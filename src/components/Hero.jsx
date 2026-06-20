@@ -1,39 +1,106 @@
+import { useEffect, useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import Icon from './Icon'
 import { HERO, CONTACT } from '../data/content'
 import styles from './Hero.module.css'
 
+// Word-by-word blur-in reveal (21st.dev "Animated Hero Section" pattern)
+function RevealWords({ text, className, delay = 0 }) {
+  return (
+    <span className={className} aria-label={text}>
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={`${word}-${i}`}
+          aria-hidden="true"
+          className={styles.revealWord}
+          initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
+          animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+          transition={{ duration: 0.5, delay: delay + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
+
 export default function Hero() {
+  const words = useMemo(() => HERO.rotatingWords, [])
+  const [index, setIndex] = useState(0)
+
+  // Cycle the headline word (21st.dev rotating-headline pattern)
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length)
+    }, 2400)
+    return () => clearInterval(id)
+  }, [words.length])
+
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.radial} aria-hidden="true" />
       <div className={styles.grid} aria-hidden="true" />
+      <div className={styles.beamLeft} aria-hidden="true" />
+      <div className={styles.beamRight} aria-hidden="true" />
 
       <div className={`container ${styles.content}`}>
-        <span className={styles.badge}>
+        <motion.span
+          className={styles.badge}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className={styles.dot} aria-hidden="true" />
           {HERO.badge}
-        </span>
+        </motion.span>
 
         <h1 className={styles.title}>
-          {HERO.titleLines.map((line, i) => (
-            <span
-              key={line}
-              className={i === HERO.highlightIndex ? styles.highlight : undefined}
-            >
-              {line}{' '}
+          <RevealWords text={HERO.titleStatic} className={styles.titleStatic} delay={0.15} />
+          <span className={styles.rotator}>
+            {words.map((word, i) => (
+              <motion.span
+                key={word}
+                className={styles.rotatorWord}
+                initial={{ opacity: 0, y: '110%' }}
+                animate={
+                  index === i
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 0, y: index > i ? '-110%' : '110%' }
+                }
+                transition={{ type: 'spring', stiffness: 90, damping: 14 }}
+                aria-hidden={index !== i}
+              >
+                {word}
+              </motion.span>
+            ))}
+            {/* Reserve height with the longest word (invisible) */}
+            <span className={styles.rotatorGhost} aria-hidden="true">
+              {words.reduce((a, b) => (b.length > a.length ? b : a), '')}
             </span>
-          ))}
+          </span>
         </h1>
 
-        <p className={`lead ${styles.sub}`}>{HERO.subtitle}</p>
+        <motion.p
+          className={`lead ${styles.sub}`}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {HERO.subtitle}
+        </motion.p>
 
-        <div className={styles.actions}>
+        <motion.div
+          className={styles.actions}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        >
           <a href={`mailto:${CONTACT.email}`} className="btn btn-primary">
             Book a Session
             <Icon name="arrowRight" size={20} />
           </a>
           <a href="#programs" className="btn btn-ghost">Explore Programs</a>
-        </div>
+        </motion.div>
       </div>
 
       <a href="#about" className={styles.scroll} aria-label="Scroll to about section">

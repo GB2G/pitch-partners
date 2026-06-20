@@ -31,6 +31,24 @@
   pointer-events: none;
 }
 
+/* Faint vertical accent beams (21st.dev framed-hero motif) */
+.beamLeft,
+.beamRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(251, 191, 36, 0.22) 45%,
+    transparent 85%
+  );
+  pointer-events: none;
+}
+.beamLeft { left: max(6%, calc(50% - 560px)); }
+.beamRight { right: max(6%, calc(50% - 560px)); }
+
 .content {
   position: relative;
   z-index: 1;
@@ -65,6 +83,7 @@
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
+/* ── Animated headline ───────────────────────────── */
 .title {
   font-size: clamp(3.1rem, 10vw, 7rem);
   font-weight: 900;
@@ -72,15 +91,46 @@
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin-bottom: 1.6rem;
-  max-width: 14ch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 16ch;
 }
 
-.highlight {
+.titleStatic { display: block; }
+
+.revealWord {
+  display: inline-block;
+  white-space: pre;
+}
+.revealWord + .revealWord { margin-left: 0.28em; }
+
+.rotator {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.rotatorWord {
+  position: absolute;
+  inset: 0;
+  display: block;
+  text-align: center;
   background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: var(--gold);
+  will-change: transform, opacity;
+}
+
+.rotatorGhost {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sub {
@@ -125,8 +175,16 @@
   text-transform: uppercase;
 }
 
+@media (max-width: 1180px) {
+  .beamLeft, .beamRight { display: none; }
+}
+
 @media (max-width: 560px) {
   .actions { width: 100%; flex-direction: column; }
   .actions :global(.btn) { width: 100%; }
   .scroll { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotatorWord { transition: none; }
 }

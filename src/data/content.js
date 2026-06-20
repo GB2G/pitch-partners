@@ -27,8 +27,8 @@ export const STATS = [
 
 export const HERO = {
   badge: 'Professional Football Coaching',
-  titleLines: ['Unlock Your', 'Football', 'Potential'],
-  highlightIndex: 1,
+  titleStatic: 'Unlock Your',
+  rotatingWords: ['Potential', 'Game', 'Future', 'Greatness'],
   subtitle:
     'Expert guidance, personalized training, and professional connections — built on real experience at the highest levels of the game.',
 }
