@@ -1,0 +1,114 @@
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-nav);
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  background: rgba(10, 9, 8, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.4vw, 2.25rem);
+}
+
+.links > a:not(.cta) {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+.links > a:not(.cta):hover { color: var(--gold); }
+
+.cta {
+  font-size: 0.95rem;
+  padding: 0.6rem 1.3rem;
+  min-height: 42px;
+}
+
+.burger {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--text);
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile drawer */
+.drawer {
+  position: fixed;
+  top: 76px;
+  right: 0;
+  width: min(80vw, 320px);
+  height: calc(100dvh - 76px);
+  background: var(--bg-2);
+  border-left: 1px solid var(--border);
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: var(--z-nav);
+  padding: 2rem 1.75rem;
+  overflow-y: auto;
+}
+.drawerOpen { transform: translateX(0); }
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.drawerLinks > a:not([class]) {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border-neutral);
+  transition: color 0.2s ease;
+}
+.drawerLinks > a:not([class]):hover { color: var(--gold); }
+.drawerLinks > a.btn { margin-top: 1.25rem; }
+
+.scrim {
+  position: fixed;
+  inset: 76px 0 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: var(--z-overlay);
+  animation: fade 0.25s ease;
+}
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 860px) {
+  .links { display: none; }
+  .burger { display: inline-flex; }
+}
+
+@media (min-width: 861px) {
+  .drawer, .scrim { display: none; }
+}

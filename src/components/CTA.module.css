@@ -1,0 +1,36 @@
+.cta {
+  position: relative;
+  background: var(--bg-2);
+  border-block: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 80% at 50% 50%,
+    rgba(251, 191, 36, 0.1) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  text-align: center;
+  max-width: 720px;
+  padding-block: clamp(4rem, 9vw, 6.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  margin: 1rem auto 2.4rem;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .inner :global(.btn) { width: 100%; }
+}

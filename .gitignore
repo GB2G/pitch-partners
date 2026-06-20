@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# Claude Code — local/machine-specific & third-party tooling
+.claude/settings.local.json
+.claude/skills/
