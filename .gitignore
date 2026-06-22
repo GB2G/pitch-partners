@@ -8,3 +8,8 @@ dist-ssr
 # Claude Code — local/machine-specific & third-party tooling
 .claude/settings.local.json
 .claude/skills/
+
+# Media assets
+public/*.mp4
+public/*.mov
+public/*.webm

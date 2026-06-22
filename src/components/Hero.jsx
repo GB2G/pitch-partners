@@ -38,6 +38,18 @@ export default function Hero() {
 
   return (
     <section id="home" className={styles.hero}>
+      <video
+        className={styles.videoBg}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      >
+        <source src="/hero-bg.mov" type="video/quicktime" />
+        <source src="/hero-bg.mp4" type="video/mp4" />
+      </video>
+      <div className={styles.overlay} aria-hidden="true" />
       <div className={styles.radial} aria-hidden="true" />
       <div className={styles.grid} aria-hidden="true" />
       <div className={styles.beamLeft} aria-hidden="true" />
