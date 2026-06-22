@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Icon from './Icon'
 import { MEDIA, NAV_LINKS } from '../data/content'
 import styles from './Navbar.module.css'
 
-export default function Navbar({ onBookingClick }) {
+export default function Navbar() {
+  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -33,7 +35,7 @@ export default function Navbar({ onBookingClick }) {
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href}>{l.label}</a>
           ))}
-          <button onClick={onBookingClick} className={`btn btn-primary ${styles.cta}`}>
+          <button onClick={() => navigate('/booking')} className={`btn btn-primary ${styles.cta}`}>
             Book Now
           </button>
         </nav>
@@ -54,7 +56,7 @@ export default function Navbar({ onBookingClick }) {
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
           ))}
-          <button onClick={() => { onBookingClick(); close(); }} className="btn btn-primary">
+          <button onClick={() => { navigate('/booking'); close(); }} className="btn btn-primary">
             Book Now
           </button>
         </nav>

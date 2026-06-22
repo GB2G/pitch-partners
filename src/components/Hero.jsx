@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Icon from "./Icon";
 import { HERO } from "../data/content";
-import { useBookingModal } from "../hooks/useBookingModal";
 import styles from "./Hero.module.css";
 
 // Word-by-word blur-in reveal (21st.dev "Animated Hero Section" pattern)
@@ -29,7 +29,8 @@ function RevealWords({ text, className, delay = 0 }) {
   );
 }
 
-export default function Hero({ onBookingClick }) {
+export default function Hero() {
+  const navigate = useNavigate();
   const words = useMemo(() => HERO.rotatingWords, []);
   const [index, setIndex] = useState(0);
 
@@ -116,7 +117,7 @@ export default function Hero({ onBookingClick }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
         >
-          <button onClick={onBookingClick} className="btn btn-primary">
+          <button onClick={() => navigate('/booking')} className="btn btn-primary">
             Book a Session
             <Icon name="arrowRight" size={20} />
           </button>

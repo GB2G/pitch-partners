@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 import Icon from './Icon'
 import useReveal from '../hooks/useReveal'
 import styles from './CTA.module.css'
 
-export default function CTA({ onBookingClick }) {
+export default function CTA() {
+  const navigate = useNavigate()
   const [ref, inView] = useReveal()
   return (
     <section className={styles.cta} ref={ref}>
@@ -17,7 +19,7 @@ export default function CTA({ onBookingClick }) {
           success starts with a single step.
         </p>
         <button
-          onClick={onBookingClick}
+          onClick={() => navigate('/booking')}
           className={`btn btn-primary reveal delay-3 ${inView ? 'is-in' : ''}`}
         >
           Book a Session Today
