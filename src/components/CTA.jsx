@@ -1,9 +1,8 @@
 import Icon from './Icon'
 import useReveal from '../hooks/useReveal'
-import { CONTACT } from '../data/content'
 import styles from './CTA.module.css'
 
-export default function CTA() {
+export default function CTA({ onBookingClick }) {
   const [ref, inView] = useReveal()
   return (
     <section className={styles.cta} ref={ref}>
@@ -17,13 +16,13 @@ export default function CTA() {
           Join a community of passionate footballers dedicated to excellence. Your pathway to
           success starts with a single step.
         </p>
-        <a
-          href={`mailto:${CONTACT.email}`}
+        <button
+          onClick={onBookingClick}
           className={`btn btn-primary reveal delay-3 ${inView ? 'is-in' : ''}`}
         >
           Book a Session Today
           <Icon name="arrowRight" size={20} />
-        </a>
+        </button>
       </div>
     </section>
   )

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import Icon from './Icon'
-import { MEDIA, NAV_LINKS, CONTACT } from '../data/content'
+import { MEDIA, NAV_LINKS } from '../data/content'
 import styles from './Navbar.module.css'
 
-export default function Navbar() {
+export default function Navbar({ onBookingClick }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -33,9 +33,9 @@ export default function Navbar() {
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href}>{l.label}</a>
           ))}
-          <a href={`mailto:${CONTACT.email}`} className={`btn btn-primary ${styles.cta}`}>
+          <button onClick={onBookingClick} className={`btn btn-primary ${styles.cta}`}>
             Book Now
-          </a>
+          </button>
         </nav>
 
         <button
@@ -54,9 +54,9 @@ export default function Navbar() {
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
           ))}
-          <a href={`mailto:${CONTACT.email}`} className="btn btn-primary" onClick={close}>
+          <button onClick={() => { onBookingClick(); close(); }} className="btn btn-primary">
             Book Now
-          </a>
+          </button>
         </nav>
       </div>
       {open && <div className={styles.scrim} onClick={close} aria-hidden="true" />}

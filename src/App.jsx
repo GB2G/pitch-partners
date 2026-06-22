@@ -6,21 +6,29 @@ import Programs from './components/Programs'
 import CTA from './components/CTA'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import BookingModal from './components/BookingModal'
+import BookingForm from './components/BookingForm'
+import { useBookingModal } from './hooks/useBookingModal'
 
 export default function App() {
+  const { isOpen, openModal, closeModal } = useBookingModal()
+
   return (
     <>
       <a href="#home" className="sr-skip">Skip to content</a>
-      <Navbar />
+      <Navbar onBookingClick={openModal} />
       <main>
-        <Hero />
+        <Hero onBookingClick={openModal} />
         <Stats />
         <About />
         <Programs />
-        <CTA />
+        <CTA onBookingClick={openModal} />
         <Contact />
       </main>
       <Footer />
+      <BookingModal isOpen={isOpen} onClose={closeModal}>
+        <BookingForm onClose={closeModal} />
+      </BookingModal>
     </>
   )
 }
