@@ -5,7 +5,7 @@
 }
 
 .form h2 {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -14,7 +14,7 @@
 
 .subtitle {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
   margin: 0;
 }
 
@@ -26,7 +26,7 @@
 
 .formGroup label {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text);
@@ -38,9 +38,9 @@
   background: var(--bg-3);
   border: 1px solid var(--border-2);
   border-radius: 8px;
-  padding: 0.75rem 1rem;
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: var(--text);
   transition: all 0.2s ease;
 }
@@ -68,7 +68,7 @@
 
 .formGroup textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: clamp(80px, 20vh, 120px);
 }
 
 .errorMsg {
@@ -92,11 +92,11 @@
 
 .successMessage {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: clamp(1rem, 5vw, 2rem) clamp(0.5rem, 3vw, 1rem);
 }
 
 .successMessage h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 5vw, 1.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -109,7 +109,7 @@
 
 .successMessage p {
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   margin: 0;
 }
 
