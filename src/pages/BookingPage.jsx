@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
+import useScrollToSection from '../hooks/useScrollToSection'
 import BookingForm from '../components/BookingForm'
 import styles from './BookingPage.module.css'
 
 export default function BookingPage() {
+  useScrollToSection()
   const navigate = useNavigate()
 
   const handleSuccess = () => {
