@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Icon from "./Icon";
 import { HERO } from "../data/content";
@@ -121,20 +121,20 @@ export default function Hero() {
             Book a Session
             <Icon name="arrowRight" size={20} />
           </button>
-          <a href="#programs" className="btn btn-ghost">
+          <Link to="/#programs" className="btn btn-ghost">
             Explore Programs
-          </a>
+          </Link>
         </motion.div>
       </div>
 
-      <a
-        href="#about"
+      <Link
+        to="/#about"
         className={styles.scroll}
         aria-label="Scroll to about section"
       >
         <span className={styles.scrollLine} />
         <span className={styles.scrollText}>Scroll</span>
-      </a>
+      </Link>
     </section>
   );
 }

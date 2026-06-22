@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Icon from './Icon'
 import { MEDIA, NAV_LINKS } from '../data/content'
 import styles from './Navbar.module.css'
@@ -27,13 +27,13 @@ export default function Navbar() {
   return (
     <header className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="#home" className={styles.logo} onClick={close} aria-label="Pitch Partners — home">
+        <Link to="/" className={styles.logo} onClick={close} aria-label="Pitch Partners — home">
           <img src={MEDIA.logo} alt="Pitch Partners" />
-        </a>
+        </Link>
 
         <nav className={styles.links} aria-label="Primary">
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href}>{l.label}</a>
+            <Link key={l.href} to={`/${l.href}`}>{l.label}</Link>
           ))}
           <button onClick={() => navigate('/booking')} className={`btn btn-primary ${styles.cta}`}>
             Book Now
@@ -54,7 +54,7 @@ export default function Navbar() {
       <div className={`${styles.drawer} ${open ? styles.drawerOpen : ''}`} aria-hidden={!open}>
         <nav className={styles.drawerLinks} aria-label="Mobile">
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
+            <Link key={l.href} to={`/${l.href}`} onClick={close}>{l.label}</Link>
           ))}
           <button onClick={() => { navigate('/booking'); close(); }} className="btn btn-primary">
             Book Now
