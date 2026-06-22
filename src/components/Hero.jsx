@@ -1,40 +1,44 @@
-import { useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
-import Icon from './Icon'
-import { HERO, CONTACT } from '../data/content'
-import styles from './Hero.module.css'
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import Icon from "./Icon";
+import { HERO, CONTACT } from "../data/content";
+import styles from "./Hero.module.css";
 
 // Word-by-word blur-in reveal (21st.dev "Animated Hero Section" pattern)
 function RevealWords({ text, className, delay = 0 }) {
   return (
     <span className={className} aria-label={text}>
-      {text.split(' ').map((word, i) => (
+      {text.split(" ").map((word, i) => (
         <motion.span
           key={`${word}-${i}`}
           aria-hidden="true"
           className={styles.revealWord}
-          initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
-          animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-          transition={{ duration: 0.5, delay: delay + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, filter: "blur(8px)", y: 12 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: delay + i * 0.12,
+            ease: [0.16, 1, 0.3, 1],
+          }}
         >
           {word}
         </motion.span>
       ))}
     </span>
-  )
+  );
 }
 
 export default function Hero() {
-  const words = useMemo(() => HERO.rotatingWords, [])
-  const [index, setIndex] = useState(0)
+  const words = useMemo(() => HERO.rotatingWords, []);
+  const [index, setIndex] = useState(0);
 
   // Cycle the headline word (21st.dev rotating-headline pattern)
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length)
-    }, 2400)
-    return () => clearInterval(id)
-  }, [words.length])
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2400);
+    return () => clearInterval(id);
+  }, [words.length]);
 
   return (
     <section id="home" className={styles.hero}>
@@ -67,19 +71,23 @@ export default function Hero() {
         </motion.span>
 
         <h1 className={styles.title}>
-          <RevealWords text={HERO.titleStatic} className={styles.titleStatic} delay={0.15} />
+          <RevealWords
+            text={HERO.titleStatic}
+            className={styles.titleStatic}
+            delay={0.15}
+          />
           <span className={styles.rotator}>
             {words.map((word, i) => (
               <motion.span
                 key={word}
                 className={styles.rotatorWord}
-                initial={{ opacity: 0, y: '110%' }}
+                initial={{ opacity: 0, y: "110%" }}
                 animate={
                   index === i
                     ? { opacity: 1, y: 0 }
-                    : { opacity: 0, y: index > i ? '-110%' : '110%' }
+                    : { opacity: 0, y: index > i ? "-110%" : "110%" }
                 }
-                transition={{ type: 'spring', stiffness: 90, damping: 14 }}
+                transition={{ type: "spring", stiffness: 90, damping: 14 }}
                 aria-hidden={index !== i}
               >
                 {word}
@@ -87,7 +95,7 @@ export default function Hero() {
             ))}
             {/* Reserve height with the longest word (invisible) */}
             <span className={styles.rotatorGhost} aria-hidden="true">
-              {words.reduce((a, b) => (b.length > a.length ? b : a), '')}
+              {words.reduce((a, b) => (b.length > a.length ? b : a), "")}
             </span>
           </span>
         </h1>
@@ -111,14 +119,20 @@ export default function Hero() {
             Book a Session
             <Icon name="arrowRight" size={20} />
           </a>
-          <a href="#programs" className="btn btn-ghost">Explore Programs</a>
+          <a href="#programs" className="btn btn-ghost">
+            Explore Programs
+          </a>
         </motion.div>
       </div>
 
-      <a href="#about" className={styles.scroll} aria-label="Scroll to about section">
+      <a
+        href="#about"
+        className={styles.scroll}
+        aria-label="Scroll to about section"
+      >
         <span className={styles.scrollLine} />
         <span className={styles.scrollText}>Scroll</span>
       </a>
     </section>
-  )
+  );
 }

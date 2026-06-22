@@ -49,8 +49,16 @@
     linear-gradient(rgba(251, 191, 36, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(251, 191, 36, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 72% 70% at 50% 42%, #000 0%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 42%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(
+    ellipse 72% 70% at 50% 42%,
+    #000 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 72% 70% at 50% 42%,
+    #000 0%,
+    transparent 100%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -71,8 +79,12 @@
   pointer-events: none;
   z-index: 0;
 }
-.beamLeft { left: max(6%, calc(50% - 560px)); }
-.beamRight { right: max(6%, calc(50% - 560px)); }
+.beamLeft {
+  left: max(6%, calc(50% - 560px));
+}
+.beamRight {
+  right: max(6%, calc(50% - 560px));
+}
 
 .content {
   position: relative;
@@ -106,7 +118,15 @@
   background: var(--gold);
   animation: pulse 2s ease-in-out infinite;
 }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
 
 /* ── Animated headline ───────────────────────────── */
 .title {
@@ -122,13 +142,17 @@
   max-width: 16ch;
 }
 
-.titleStatic { display: block; }
+.titleStatic {
+  display: block;
+}
 
 .revealWord {
   display: inline-block;
   white-space: pre;
 }
-.revealWord + .revealWord { margin-left: 0.28em; }
+.revealWord + .revealWord {
+  margin-left: 0.28em;
+}
 
 .rotator {
   position: relative;
@@ -143,7 +167,12 @@
   inset: 0;
   display: block;
   text-align: center;
-  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-bright) 0%,
+    var(--gold) 50%,
+    var(--gold-deep) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -188,10 +217,22 @@
   animation: scrolldown 1.7s ease-in-out infinite;
 }
 @keyframes scrolldown {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 .scrollText {
   font-family: var(--font-display);
@@ -201,15 +242,27 @@
 }
 
 @media (max-width: 1180px) {
-  .beamLeft, .beamRight { display: none; }
+  .beamLeft,
+  .beamRight {
+    display: none;
+  }
 }
 
 @media (max-width: 560px) {
-  .actions { width: 100%; flex-direction: column; }
-  .actions :global(.btn) { width: 100%; }
-  .scroll { display: none; }
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .actions :global(.btn) {
+    width: 100%;
+  }
+  .scroll {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rotatorWord { transition: none; }
+  .rotatorWord {
+    transition: none;
+  }
 }
