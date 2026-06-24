@@ -76,5 +76,8 @@
 
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr; }
-  .media { order: -1; max-width: 340px; margin-inline: auto; }
+  .media { order: -1; max-width: 360px; margin-inline: auto; }
+  /* Show only the top photo of the collage so it stays compact */
+  .frame { aspect-ratio: 540 / 312; }
+  .frame img { object-position: top center; }
 }
