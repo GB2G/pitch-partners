@@ -8,7 +8,7 @@ export const MEDIA = {
 export const CONTACT = {
   email: 'pitchpartnersmgmt@gmail.com',
   instagram: { handle: '@pitchpartners.mgmt', url: 'https://instagram.com/pitchpartners.mgmt' },
-  linkedin: { handle: 'Pitch Partners', url: 'https://www.linkedin.com/company/pitch-partners' },
+  linkedin: { handle: 'Pitch Partners', url: 'https://www.linkedin.com/in/pitch-partners-266658271' },
 }
 
 export const NAV_LINKS = [
