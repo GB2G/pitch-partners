@@ -50,15 +50,12 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
 }
 .card:hover .more,
 .card:focus-visible .more {
-  opacity: 1;
-  transform: translateX(0);
+  color: var(--gold);
 }
 
 .iconWrap {
@@ -117,12 +114,4 @@
 }
 @media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; }
-}
-
-/* On touch / no-hover devices, keep the affordance visible */
-@media (hover: none) {
-  .more {
-    opacity: 1;
-    transform: none;
-  }
 }
