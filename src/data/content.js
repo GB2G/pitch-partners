@@ -51,6 +51,8 @@ export const PROGRAMS = [
     icon: 'user',
     name: 'Individual Training',
     desc: 'One-on-one sessions built entirely around your development. Every rep, every drill — designed specifically for you.',
+    details:
+      'This program offers you personalized training tailored to your needs, significantly enhancing skill development and performance. Through one-on-one coaching focused on specific skill areas, the approach accelerates your advancement and deepens your comprehension of the game.',
     tags: ['Player Specific', 'Personalized', 'Tailored'],
   },
   {
@@ -58,6 +60,8 @@ export const PROGRAMS = [
     icon: 'users',
     name: 'Group Training',
     desc: 'Train alongside driven players who share your ambition. Build chemistry, healthy competition, and collective growth.',
+    details:
+      'This program combines the benefits of personalized attention with the advantages of a team environment. Athletes receive individualized feedback while participating in collaborative drills that emphasize teamwork, communication, and realistic match conditions.',
     tags: ['Team Oriented', 'Collaborative', 'Common Goals'],
   },
   {
@@ -65,6 +69,8 @@ export const PROGRAMS = [
     icon: 'analysis',
     name: 'Tactical Analysis',
     desc: 'Understand the game at a deeper level. We dissect your performances to identify strengths, expose weaknesses, and sharpen your football IQ.',
+    details:
+      'This program allows you to dive deeply into your individual performance and tactical understanding. By examining your in-game positioning and decisions, we develop customized enhancement strategies that help you understand your role contributions and improve your field intelligence.',
     tags: ['Film Review', 'Strategic Insight', 'Performance'],
   },
   {
@@ -72,6 +78,8 @@ export const PROGRAMS = [
     icon: 'scouting',
     name: 'Scouting',
     desc: 'Leveraging professional networks to connect talented players with real opportunities — evaluation, exposure, and recruitment support.',
+    details:
+      'This program is offered to professional clubs and universities, providing expert recruitment assistance. The service evaluates prospective players’ abilities, tactical comprehension, and development trajectory to guide roster-building decisions aligned with your organizational objectives.',
     tags: ['Talent ID', 'Recruitment', 'Evaluation'],
   },
 ]

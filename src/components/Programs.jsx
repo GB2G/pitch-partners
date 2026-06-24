@@ -1,10 +1,14 @@
+import { useState } from 'react'
 import Icon from './Icon'
 import useReveal from '../hooks/useReveal'
 import { PROGRAMS } from '../data/content'
+import ProgramModal from './ProgramModal'
 import styles from './Programs.module.css'
 
 export default function Programs() {
   const [ref, inView] = useReveal()
+  const [selected, setSelected] = useState(null)
+
   return (
     <section id="programs" className={`section ${styles.programs}`} ref={ref}>
       <div className="container">
@@ -23,8 +27,11 @@ export default function Programs() {
 
         <div className={styles.grid}>
           {PROGRAMS.map((p, i) => (
-            <article
+            <button
+              type="button"
               key={p.id}
+              onClick={() => setSelected(p)}
+              aria-label={`View details for ${p.name}`}
               className={`${styles.card} reveal delay-${(i % 4) + 1} ${inView ? 'is-in' : ''}`}
             >
               <span className={styles.iconWrap}>
@@ -37,10 +44,16 @@ export default function Programs() {
                   <li key={t}>{t}</li>
                 ))}
               </ul>
-            </article>
+              <span className={styles.more}>
+                Learn more
+                <Icon name="arrowRight" size={16} />
+              </span>
+            </button>
           ))}
         </div>
       </div>
+
+      <ProgramModal program={selected} onClose={() => setSelected(null)} />
     </section>
   )
 }
