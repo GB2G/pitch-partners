@@ -31,8 +31,8 @@ export default function About() {
               src={MEDIA.founder}
               alt={`${ABOUT.name}, ${ABOUT.role}`}
               loading="lazy"
-              width="350"
-              height="622"
+              width="540"
+              height="960"
             />
           </div>
         </div>

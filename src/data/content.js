@@ -2,7 +2,7 @@
 
 export const MEDIA = {
   logo: 'https://ppfm.naderhajjar.com/wp-content/uploads/2025/07/logo.png',
-  founder: 'https://ppfm.naderhajjar.com/wp-content/uploads/2025/07/about-576x1024-350x622.jpg',
+  founder: `${import.meta.env.BASE_URL}about-founder.jpg`,
 }
 
 export const CONTACT = {
