@@ -9,7 +9,6 @@ dist-ssr
 .claude/settings.local.json
 .claude/skills/
 
-# Media assets
-public/*.mp4
+# Media assets (mp4 hero video is committed so CI/Pages can bundle it)
 public/*.mov
 public/*.webm
