@@ -52,8 +52,8 @@ export default function Hero() {
         playsInline
         aria-hidden="true"
       >
-        <source src="/hero-bg.mov" type="video/quicktime" />
-        <source src="/hero-bg.mp4" type="video/mp4" />
+        <source src={`${import.meta.env.BASE_URL}hero-bg.mov`} type="video/quicktime" />
+        <source src={`${import.meta.env.BASE_URL}hero-bg.mp4`} type="video/mp4" />
       </video>
       <div className={styles.overlay} aria-hidden="true" />
       <div className={styles.radial} aria-hidden="true" />
