@@ -96,9 +96,12 @@ export default function Hero() {
                 {word}
               </motion.span>
             ))}
-            {/* Reserve height with the longest word (invisible) */}
-            <span className={styles.rotatorGhost} aria-hidden="true">
-              {words.reduce((a, b) => (b.length > a.length ? b : a), "")}
+            {/* Reserve size with the WIDEST word — stack all words so the
+                box fits the longest by pixels, not by character count */}
+            <span className={styles.rotatorGhosts} aria-hidden="true">
+              {words.map((word) => (
+                <span key={word} className={styles.ghostWord}>{word}</span>
+              ))}
             </span>
           </span>
         </h1>

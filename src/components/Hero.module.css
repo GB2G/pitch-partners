@@ -105,7 +105,8 @@
   position: relative;
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
+  /* right slack so the trailing glyph isn't clipped by negative tracking */
+  padding: 0 0.12em 0.06em 0;
 }
 
 .rotatorWord {
@@ -117,11 +118,16 @@
   will-change: transform, opacity;
 }
 
-.rotatorGhost {
-  display: block;
+/* All words stacked in one grid cell: box sizes to the WIDEST word
+   and to a single line's height */
+.rotatorGhosts {
+  display: grid;
   visibility: hidden;
-  opacity: 0;
   pointer-events: none;
+}
+.ghostWord {
+  grid-area: 1 / 1;
+  white-space: nowrap;
 }
 
 .sub {
