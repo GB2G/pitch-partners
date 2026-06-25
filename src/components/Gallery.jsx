@@ -4,6 +4,9 @@ import styles from './Gallery.module.css'
 
 export default function Gallery() {
   const [ref, inView] = useReveal()
+  // Duplicate the set so the marquee can loop seamlessly
+  const slides = [...GALLERY.images, ...GALLERY.images]
+
   return (
     <section id="gallery" className={`section ${styles.gallery}`} ref={ref}>
       <div className="container">
@@ -16,14 +19,21 @@ export default function Gallery() {
           </div>
           <p className={`lead reveal delay-2 ${inView ? 'is-in' : ''}`}>{GALLERY.lead}</p>
         </div>
+      </div>
 
-        <div className={styles.grid}>
-          {GALLERY.images.map((img, i) => (
-            <figure
-              key={img.src}
-              className={`${styles.frame} reveal delay-${(i % 4) + 1} ${inView ? 'is-in' : ''}`}
-            >
-              <img src={img.src} alt={img.alt} loading="lazy" />
+      <div
+        className={`${styles.viewport} reveal delay-2 ${inView ? 'is-in' : ''}`}
+        role="region"
+        aria-label="Training and coaching photos"
+      >
+        <div className={styles.track}>
+          {slides.map((img, i) => (
+            <figure className={styles.card} key={i} aria-hidden={i >= GALLERY.images.length}>
+              <img
+                src={img.src}
+                alt={i < GALLERY.images.length ? img.alt : ''}
+                loading="lazy"
+              />
             </figure>
           ))}
         </div>
