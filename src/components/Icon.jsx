@@ -17,8 +17,12 @@ const PATHS = {
   ),
   analysis: (
     <>
-      <path d="M3 3v18h18" />
-      <path d="M7 15l3-3 3 2 4-5" />
+      {/* Tactical board — X's and O's play diagram */}
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8" cy="8.5" r="1.6" />
+      <path d="M13.4 6.9l3.2 3.2M16.6 6.9l-3.2 3.2" />
+      <path d="M6.5 15h6" strokeDasharray="2 2" />
+      <path d="M11.5 13l2 2-2 2" />
     </>
   ),
   scouting: (

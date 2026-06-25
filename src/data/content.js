@@ -5,6 +5,18 @@ export const MEDIA = {
   founder: `${import.meta.env.BASE_URL}about-founder.jpg`,
 }
 
+export const GALLERY = {
+  eyebrow: 'On The Pitch',
+  title: 'In Action',
+  lead: 'Real sessions, real players, real development — a look at the work behind the results.',
+  images: [
+    { src: `${import.meta.env.BASE_URL}gallery-2.jpg`, alt: 'Nick coaching a one-on-one training session' },
+    { src: `${import.meta.env.BASE_URL}gallery-1.jpg`, alt: 'Nick on the training pitch in Pitch Partners kit' },
+    { src: `${import.meta.env.BASE_URL}gallery-3.jpg`, alt: 'Nick mentoring a university player at the sideline' },
+    { src: `${import.meta.env.BASE_URL}gallery-4.jpg`, alt: 'Nick running a session with a full set of footballs' },
+  ],
+}
+
 export const CONTACT = {
   email: 'pitchpartnersmgmt@gmail.com',
   instagram: { handle: '@pitchpartners.mgmt', url: 'https://instagram.com/pitchpartners.mgmt' },
@@ -20,8 +32,8 @@ export const NAV_LINKS = [
 
 export const STATS = [
   { value: 4, suffix: '', label: 'Training Programs' },
-  { value: 3, suffix: '', label: 'Countries Played In', note: 'Canada · France · Lebanon' },
-  { value: 1, prefix: '', suffix: '', label: 'National Team Call-Up', display: 'NAT’L' },
+  { value: 100, suffix: '+', label: 'Active Players' },
+  { display: 'ALL LEVELS', label: 'From Amateurs to Pro Players' },
   { value: 100, suffix: '%', label: 'Player-First Coaching' },
 ]
 
@@ -38,7 +50,7 @@ export const ABOUT = {
   name: 'Nicholas Aramouni',
   role: 'Founder & Head Coach — Pitch Partners',
   paragraphs: [
-    "Nicholas's football journey began in the competitive local clubs of Ottawa, where he built his technical foundation before earning a place at university-level competition across Canada.",
+    "Nick's football journey began in the competitive local clubs of Ottawa, where he built his technical foundation before earning a place at university-level competition across Canada.",
     'His determination took him overseas — earning a move to play club football in France and ultimately receiving a call-up to the Lebanese National Team, cementing his status as a professional player with true international experience.',
     "He founded Pitch Partners to share the knowledge, experience, and connections built throughout his career — giving the next generation a clear, proven pathway to achieve their football goals.",
   ],
