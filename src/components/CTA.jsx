@@ -8,7 +8,7 @@ export default function CTA() {
   const [ref, inView] = useReveal()
   return (
     <section className={styles.cta} ref={ref}>
-      <div className={styles.glow} aria-hidden="true" />
+      <div className={styles.arc} aria-hidden="true" />
       <div className={`container ${styles.inner}`}>
         <p className={`eyebrow reveal ${inView ? 'is-in' : ''}`}>Get Started</p>
         <h2 className={`section-title reveal delay-1 ${inView ? 'is-in' : ''}`}>

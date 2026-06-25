@@ -21,8 +21,9 @@
   position: relative;
   pointer-events: auto;
   background: var(--bg-2);
-  border: 1px solid var(--border-1);
-  border-radius: 16px;
+  border: 1px solid var(--border-2);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
   padding: clamp(1.75rem, 4vw, 2.5rem);
   width: 100%;
   max-width: 540px;
@@ -56,15 +57,15 @@
 }
 
 .iconWrap {
-  width: 60px;
-  height: 60px;
-  border-radius: 14px;
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--gold-tint);
-  border: 1px solid var(--border-2);
-  color: var(--gold);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: var(--ink);
   margin-bottom: 1.4rem;
 }
 
@@ -92,14 +93,14 @@
   margin: 0 0 2rem 0;
 }
 .tags li {
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
   font-weight: 500;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-neutral);
-  padding: 0.3rem 0.7rem;
-  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
 }
 
 .cta {

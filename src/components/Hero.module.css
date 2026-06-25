@@ -3,7 +3,7 @@
   min-height: 100svh;
   display: flex;
   align-items: center;
-  text-align: center;
+  text-align: left;
   padding-top: 76px;
   overflow: hidden;
 }
@@ -20,70 +20,51 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(10, 9, 8, 0.72) 0%,
-    rgba(10, 9, 8, 0.68) 50%,
-    rgba(10, 9, 8, 0.72) 100%
-  );
   z-index: 0;
   pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 7, 6, 0.92) 0%, rgba(8, 7, 6, 0.66) 48%, rgba(8, 7, 6, 0.42) 100%),
+    linear-gradient(0deg, rgba(8, 7, 6, 0.85) 0%, transparent 38%);
 }
 
-.radial {
+/* ── Signature: pitch markings ───────────────────────── */
+.pitch {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 70% 55% at 50% 36%,
-    rgba(251, 191, 36, 0.12) 0%,
-    transparent 62%
-  );
-  pointer-events: none;
   z-index: 0;
-}
-
-.grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(251, 191, 36, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(251, 191, 36, 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(
-    ellipse 72% 70% at 50% 42%,
-    #000 0%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 72% 70% at 50% 42%,
-    #000 0%,
-    transparent 100%
-  );
   pointer-events: none;
-  z-index: 0;
+  overflow: hidden;
 }
-
-/* Faint vertical accent beams (21st.dev framed-hero motif) */
-.beamLeft,
-.beamRight {
+/* Right-hand halfway line */
+.halfway {
   position: absolute;
   top: 0;
   bottom: 0;
+  right: clamp(8%, 24vw, 30%);
   width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(251, 191, 36, 0.22) 45%,
-    transparent 85%
-  );
-  pointer-events: none;
-  z-index: 0;
+  background: linear-gradient(to bottom, transparent, var(--line) 18%, var(--line) 82%, transparent);
 }
-.beamLeft {
-  left: max(6%, calc(50% - 560px));
+/* Centre circle, bisected by the halfway line */
+.circle {
+  position: absolute;
+  top: 50%;
+  right: clamp(8%, 24vw, 30%);
+  width: min(48vh, 420px);
+  height: min(48vh, 420px);
+  transform: translate(50%, -50%);
+  border: 1px solid var(--line);
+  border-radius: 50%;
 }
-.beamRight {
-  right: max(6%, calc(50% - 560px));
+.spot {
+  position: absolute;
+  top: 50%;
+  right: clamp(8%, 24vw, 30%);
+  width: 7px;
+  height: 7px;
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 18px 2px var(--gold-glow);
 }
 
 .content {
@@ -91,91 +72,47 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  max-width: 70ch;
   padding-block: clamp(3rem, 8vh, 6rem);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  background: var(--gold-tint);
-  border: 1px solid var(--border-2);
-  color: var(--gold);
-  padding: 0.45rem 1.15rem;
-  border-radius: 100px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 1.75rem;
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
 }
 
 /* ── Animated headline ───────────────────────────── */
 .title {
-  font-size: clamp(3.1rem, 10vw, 7rem);
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
   margin-bottom: 1.6rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 16ch;
+  align-items: flex-start;
 }
 
 .titleStatic {
   display: block;
+  color: var(--text);
 }
 
 .revealWord {
   display: inline-block;
   white-space: pre;
 }
-.revealWord + .revealWord {
-  margin-left: 0.28em;
-}
+.revealWord + .revealWord { margin-left: 0.26em; }
 
 .rotator {
   position: relative;
   display: block;
-  width: 100%;
   overflow: hidden;
-  padding-bottom: 0.08em;
+  padding-bottom: 0.06em;
 }
 
 .rotatorWord {
   position: absolute;
   inset: 0;
   display: block;
-  text-align: center;
-  background: linear-gradient(
-    135deg,
-    var(--gold-bright) 0%,
-    var(--gold) 50%,
-    var(--gold-deep) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-align: left;
   color: var(--gold);
   will-change: transform, opacity;
 }
@@ -189,80 +126,74 @@
 
 .sub {
   margin-bottom: 2.6rem;
-  text-align: center;
+  text-align: left;
+  max-width: 50ch;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.scroll {
+/* ── Fixtures-board meta strip ───────────────────────── */
+.fixtures {
   position: absolute;
-  bottom: 1.8rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-top: 1px solid var(--border-2);
+  background: linear-gradient(to top, rgba(8, 7, 6, 0.7), transparent);
+  backdrop-filter: blur(2px);
+}
+.fixturesInner {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--text-dim);
+  gap: clamp(1rem, 4vw, 2.5rem);
+  padding-block: 1.1rem;
 }
-.scrollLine {
-  width: 1px;
-  height: 42px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrolldown 1.7s ease-in-out infinite;
+.fixturesLabel {
+  color: var(--gold);
+  flex-shrink: 0;
 }
-@keyframes scrolldown {
-  0% {
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-  50% {
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-  51% {
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
-  100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
-  }
+.fixturesList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
 }
-.scrollText {
+.fixture {
+  display: inline-flex;
+  align-items: baseline;
   font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* Middot separators instead of squad numbers */
+.fixture:not(:first-child)::before {
+  content: '·';
+  margin: 0 clamp(0.7rem, 2vw, 1.25rem);
+  color: var(--gold);
+  font-weight: 700;
 }
 
-@media (max-width: 1180px) {
-  .beamLeft,
-  .beamRight {
-    display: none;
-  }
+@media (max-width: 760px) {
+  .circle, .halfway, .spot { right: -8%; opacity: 0.7; }
+  .fixturesLabel { display: none; }
+  /* The decorative fixtures strip would collide with the taller mobile
+     content; the disciplines are listed in the Programs section instead. */
+  .fixtures { display: none; }
 }
 
 @media (max-width: 560px) {
-  .actions {
-    width: 100%;
-    flex-direction: column;
-  }
-  .actions :global(.btn) {
-    width: 100%;
-  }
-  .scroll {
-    display: none;
-  }
+  .actions { width: 100%; flex-direction: column; }
+  .actions :global(.btn) { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rotatorWord {
-    transition: none;
-  }
+  .rotatorWord { transition: none; }
 }

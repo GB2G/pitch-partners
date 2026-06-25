@@ -3,7 +3,7 @@ import useCountUp from '../hooks/useCountUp'
 import { STATS } from '../data/content'
 import styles from './Stats.module.css'
 
-function Stat({ stat, active }) {
+function Stat({ stat, index, active }) {
   const count = useCountUp(stat.value, active)
   return (
     <div className={styles.item}>
@@ -19,10 +19,10 @@ function Stat({ stat, active }) {
 export default function Stats() {
   const [ref, inView] = useReveal()
   return (
-    <section className={styles.band} ref={ref}>
+    <section className={styles.band} ref={ref} aria-label="By the numbers">
       <div className={`container ${styles.grid}`}>
-        {STATS.map((stat) => (
-          <Stat key={stat.label} stat={stat} active={inView} />
+        {STATS.map((stat, i) => (
+          <Stat key={stat.label} stat={stat} index={i} active={inView} />
         ))}
       </div>
     </section>

@@ -7,6 +7,19 @@ export default function About() {
   return (
     <section id="about" className={`section ${styles.about}`} ref={ref}>
       <div className={`container ${styles.grid}`}>
+        <div className={`${styles.media} reveal delay-1 ${inView ? 'is-in' : ''}`}>
+          <div className={styles.frame}>
+            <img
+              src={MEDIA.founder}
+              alt={`${ABOUT.name}, ${ABOUT.role}`}
+              loading="lazy"
+              width="540"
+              height="960"
+            />
+            <span className={styles.cardTag}>Head Coach</span>
+          </div>
+        </div>
+
         <div className={styles.text}>
           <p className={`eyebrow reveal ${inView ? 'is-in' : ''}`}>{ABOUT.eyebrow}</p>
           <h2 className={`section-title reveal delay-1 ${inView ? 'is-in' : ''}`}>{ABOUT.name}</h2>
@@ -18,22 +31,16 @@ export default function About() {
             ))}
           </div>
 
-          <ul className={`${styles.journey} reveal delay-3 ${inView ? 'is-in' : ''}`}>
-            {ABOUT.journey.map((j) => (
-              <li key={j} className={styles.tag}>{j}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={`${styles.media} reveal delay-1 ${inView ? 'is-in' : ''}`}>
-          <div className={styles.frame}>
-            <img
-              src={MEDIA.founder}
-              alt={`${ABOUT.name}, ${ABOUT.role}`}
-              loading="lazy"
-              width="540"
-              height="960"
-            />
+          <div className={`${styles.journey} reveal delay-3 ${inView ? 'is-in' : ''}`}>
+            <p className={`data ${styles.journeyLabel}`}>The Pathway</p>
+            <ol className={styles.ladder}>
+              {ABOUT.journey.map((stop) => (
+                <li key={stop.place} className={styles.stop}>
+                  <span className={styles.stopPlace}>{stop.place}</span>
+                  <span className={styles.stopNote}>{stop.note}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </div>

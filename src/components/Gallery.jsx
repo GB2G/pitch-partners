@@ -6,6 +6,7 @@ export default function Gallery() {
   const [ref, inView] = useReveal()
   // Duplicate the set so the marquee can loop seamlessly
   const slides = [...GALLERY.images, ...GALLERY.images]
+  const count = GALLERY.images.length
 
   return (
     <section id="gallery" className={`section ${styles.gallery}`} ref={ref}>
@@ -28,12 +29,16 @@ export default function Gallery() {
       >
         <div className={styles.track}>
           {slides.map((img, i) => (
-            <figure className={styles.card} key={i} aria-hidden={i >= GALLERY.images.length}>
+            <figure className={styles.card} key={i} aria-hidden={i >= count}>
               <img
                 src={img.src}
-                alt={i < GALLERY.images.length ? img.alt : ''}
+                alt={i < count ? img.alt : ''}
                 loading="lazy"
               />
+              <figcaption className={styles.caption}>
+                <span className={styles.dot} aria-hidden="true" />
+                <span className={styles.frameLabel}>On the pitch</span>
+              </figcaption>
             </figure>
           ))}
         </div>

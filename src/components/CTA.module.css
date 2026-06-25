@@ -1,33 +1,38 @@
 .cta {
   position: relative;
   background: var(--bg-2);
-  border-block: 1px solid var(--border);
+  border-block: 1px solid var(--border-2);
   overflow: hidden;
 }
 
-.glow {
+/* Penalty-arc motif — the pitch-line signature, restated */
+.arc {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 60% 80% at 50% 50%,
-    rgba(251, 191, 36, 0.1) 0%,
-    transparent 65%
-  );
+  left: 50%;
+  bottom: -60%;
+  width: min(120vw, 1100px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1px solid var(--line);
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 55%);
+  mask-image: linear-gradient(to top, #000, transparent 55%);
 }
 
 .inner {
   position: relative;
   text-align: center;
-  max-width: 720px;
-  padding-block: clamp(4rem, 9vw, 6.5rem);
+  max-width: 760px;
+  padding-block: clamp(4.5rem, 10vw, 7rem);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.inner .eyebrow { justify-content: center; }
 
 .text {
-  margin: 1rem auto 2.4rem;
+  margin: 1.2rem auto 2.6rem;
   text-align: center;
 }
 

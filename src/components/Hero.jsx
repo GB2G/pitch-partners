@@ -5,7 +5,7 @@ import Icon from "./Icon";
 import { HERO } from "../data/content";
 import styles from "./Hero.module.css";
 
-// Word-by-word blur-in reveal (21st.dev "Animated Hero Section" pattern)
+// Word-by-word blur-in reveal
 function RevealWords({ text, className, delay = 0 }) {
   return (
     <span className={className} aria-label={text}>
@@ -34,7 +34,7 @@ export default function Hero() {
   const words = useMemo(() => HERO.rotatingWords, []);
   const [index, setIndex] = useState(0);
 
-  // Cycle the headline word (21st.dev rotating-headline pattern)
+  // Cycle the headline word
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
@@ -55,19 +55,21 @@ export default function Hero() {
         <source src={`${import.meta.env.BASE_URL}hero-bg.mp4`} type="video/mp4" />
       </video>
       <div className={styles.overlay} aria-hidden="true" />
-      <div className={styles.radial} aria-hidden="true" />
-      <div className={styles.grid} aria-hidden="true" />
-      <div className={styles.beamLeft} aria-hidden="true" />
-      <div className={styles.beamRight} aria-hidden="true" />
+
+      {/* Signature: pitch markings rendered as gold hairlines */}
+      <div className={styles.pitch} aria-hidden="true">
+        <span className={styles.halfway} />
+        <span className={styles.circle} />
+        <span className={styles.spot} />
+      </div>
 
       <div className={`container ${styles.content}`}>
         <motion.span
-          className={styles.badge}
+          className="eyebrow"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className={styles.dot} aria-hidden="true" />
           {HERO.badge}
         </motion.span>
 
@@ -126,14 +128,23 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <Link
-        to="/#about"
-        className={styles.scroll}
-        aria-label="Scroll to about section"
+      {/* Fixtures-board meta strip along the base */}
+      <motion.div
+        className={styles.fixtures}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1, ease: "easeOut" }}
+        aria-hidden="true"
       >
-        <span className={styles.scrollLine} />
-        <span className={styles.scrollText}>Scroll</span>
-      </Link>
+        <div className={`container ${styles.fixturesInner}`}>
+          <span className={`data ${styles.fixturesLabel}`}>The Programs</span>
+          <ul className={styles.fixturesList}>
+            {HERO.fixtures.map((f) => (
+              <li key={f} className={styles.fixture}>{f}</li>
+            ))}
+          </ul>
+        </div>
+      </motion.div>
     </section>
   );
 }

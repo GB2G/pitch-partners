@@ -2,42 +2,80 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
 
 .role {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
-  margin: 0.6rem 0 1.6rem;
+  margin: 0.9rem 0 1.8rem;
 }
 
 .body { color: var(--text-muted); }
 .body p { line-height: 1.75; }
 .body p + p { margin-top: 1rem; }
 
-.journey {
+/* ── Career timeline (a real, ordered sequence) ── */
+.journey { margin-top: 2.4rem; }
+.journeyLabel {
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+.ladder {
+  display: grid;
+  gap: 0;
+}
+.stop {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 2rem;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0 0 1.5rem 1.65rem;
+}
+.stop:last-child { padding-bottom: 0; }
+/* Node dot on the timeline */
+.stop::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-tint);
+}
+/* Connecting line between nodes */
+.stop:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-2);
+}
+.stopPlace {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1.1;
+}
+.stopNote {
+  font-size: 0.88rem;
+  color: var(--text-dim);
 }
 
-.tag {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--gold-light);
-  background: var(--gold-tint);
-  border: 1px solid var(--border-2);
-  padding: 0.4rem 0.95rem;
-  border-radius: 100px;
-}
-
+/* ── Player-card photo frame ── */
 .media { position: relative; }
 
 .frame {
@@ -46,23 +84,15 @@
   overflow: hidden;
   isolation: isolate;
   aspect-ratio: 540 / 960;
-}
-.frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
   border: 1px solid var(--border-2);
-  border-radius: var(--radius);
-  pointer-events: none;
 }
 .frame::after {
   content: '';
   position: absolute;
   inset: auto 0 0 0;
-  height: 45%;
+  height: 48%;
   z-index: 1;
-  background: linear-gradient(to top, rgba(10, 9, 8, 0.55), transparent);
+  background: linear-gradient(to top, rgba(10, 9, 8, 0.78), transparent);
   pointer-events: none;
 }
 .frame img {
@@ -74,11 +104,30 @@
 }
 .frame:hover img { transform: scale(1.04); }
 
+/* Player-card tag, lower-left */
+.cardTag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr; }
   /* Grow with the viewport on tablets, stay compact on phones */
-  .media { order: -1; max-width: clamp(320px, 70vw, 620px); margin-inline: auto; }
+  .media { max-width: clamp(320px, 70vw, 620px); margin-inline: auto; }
   /* Show only the top photo of the collage so it stays compact */
-  .frame { aspect-ratio: 540 / 312; }
+  .frame { aspect-ratio: 540 / 360; }
   .frame img { object-position: top center; }
 }

@@ -38,11 +38,13 @@ export const STATS = [
 ]
 
 export const HERO = {
-  badge: 'Professional Football Coaching',
+  badge: 'Football Management',
   titleStatic: 'Unlock Your',
   rotatingWords: ['Potential', 'Game', 'Future', 'Greatness'],
   subtitle:
     'Expert guidance, personalized training, and professional connections — built on real experience at the highest levels of the game.',
+  // Fixtures-board meta line — the four disciplines on offer
+  fixtures: ['Individual', 'Group', 'Tactical', 'Scouting'],
 }
 
 export const ABOUT = {
@@ -54,7 +56,13 @@ export const ABOUT = {
     'His determination took him overseas — earning a move to play club football in France and ultimately receiving a call-up to the Lebanese National Team, cementing his status as a professional player with true international experience.',
     "He founded Pitch Partners to share the knowledge, experience, and connections built throughout his career — giving the next generation a clear, proven pathway to achieve their football goals.",
   ],
-  journey: ['Ottawa Local Clubs', 'Canadian University', 'Club Football — France', 'Lebanese National Team'],
+  // A real, ordered career sequence — numbering carries meaning here
+  journey: [
+    { place: 'Ottawa Local Clubs', note: 'Where the technical foundation was built' },
+    { place: 'Canadian University', note: 'University-level competition across Canada' },
+    { place: 'Club Football — France', note: 'A move overseas to the professional game' },
+    { place: 'Lebanese National Team', note: 'An international call-up at the highest level' },
+  ],
 }
 
 export const PROGRAMS = [

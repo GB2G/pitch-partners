@@ -19,24 +19,26 @@ export default function Contact() {
           Contact <span className="gold-text">Us</span>
         </h2>
 
-        <div className={styles.grid}>
-          {CARDS.map((c, i) => (
-            <a
-              key={c.label}
-              href={c.href}
-              className={`${styles.card} reveal delay-${i + 1} ${inView ? 'is-in' : ''}`}
-              {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            >
-              <span className={styles.iconWrap}>
-                <Icon name={c.icon} size={22} />
-              </span>
-              <span className={styles.meta}>
+        <ul className={`${styles.list} reveal delay-2 ${inView ? 'is-in' : ''}`}>
+          {CARDS.map((c) => (
+            <li key={c.label}>
+              <a
+                href={c.href}
+                className={styles.row}
+                {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                <span className={styles.iconWrap}>
+                  <Icon name={c.icon} size={20} />
+                </span>
                 <span className={styles.label}>{c.label}</span>
                 <span className={styles.value}>{c.value}</span>
-              </span>
-            </a>
+                <span className={styles.arrow}>
+                  <Icon name="arrowRight" size={18} />
+                </span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

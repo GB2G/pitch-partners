@@ -25,32 +25,37 @@ export default function Programs() {
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {PROGRAMS.map((p, i) => (
-            <button
-              type="button"
-              key={p.id}
-              onClick={() => setSelected(p)}
-              aria-label={`View details for ${p.name}`}
-              className={`${styles.card} reveal delay-${(i % 4) + 1} ${inView ? 'is-in' : ''}`}
-            >
-              <span className={styles.iconWrap}>
-                <Icon name={p.icon} size={26} />
-              </span>
-              <h3 className={styles.name}>{p.name}</h3>
-              <p className={styles.desc}>{p.desc}</p>
-              <ul className={styles.tags}>
-                {p.tags.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-              <span className={styles.more}>
-                Learn more
-                <Icon name="arrowRight" size={16} />
-              </span>
-            </button>
+        <ul className={`${styles.sheet} reveal delay-2 ${inView ? 'is-in' : ''}`}>
+          {PROGRAMS.map((p) => (
+            <li key={p.id}>
+              <button
+                type="button"
+                onClick={() => setSelected(p)}
+                aria-label={`View details for ${p.name}`}
+                className={styles.row}
+              >
+                <span className={styles.iconWrap}>
+                  <Icon name={p.icon} size={24} />
+                </span>
+
+                <span className={styles.main}>
+                  <span className={styles.name}>{p.name}</span>
+                  <span className={styles.desc}>{p.desc}</span>
+                  <span className={styles.tags}>
+                    {p.tags.map((t) => (
+                      <span key={t} className={styles.tag}>{t}</span>
+                    ))}
+                  </span>
+                </span>
+
+                <span className={styles.more}>
+                  <span className={styles.moreText}>Details</span>
+                  <Icon name="arrowRight" size={18} />
+                </span>
+              </button>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <ProgramModal program={selected} onClose={() => setSelected(null)} />

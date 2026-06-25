@@ -1,44 +1,50 @@
 /* ============================================================
-   Pitch Partners — global tokens, reset & shared utilities
-   Palette: premium warm-dark + championship gold (logo-matched)
+   Pitch Partners — "Matchday Editorial"
+   Exaggerated minimalism · pitch-line + scoreboard grammar
+   Palette: warm near-black + championship gold (logo-matched)
    ============================================================ */
 
 :root {
-  /* Gold / amber ramp (logo-matched) */
+  /* Gold / amber ramp (logo-matched) — used flat, as an accent */
   --gold:        #fbbf24;   /* championship gold — primary accent */
   --gold-light:  #fcd34d;
   --gold-bright: #fde68a;
-  --gold-deep:   #ca8a04;   /* deep gold — CTA / pressed */
+  --gold-deep:   #ca8a04;   /* deep gold — pressed states */
   --gold-dark:   #92660b;
 
   /* Warm near-black surfaces */
   --bg:    #0a0908;
-  --bg-2:  #121009;
-  --bg-3:  #1a160f;
-  --bg-4:  #221d13;
+  --bg-2:  #100d09;
+  --bg-3:  #17120b;
+  --bg-4:  #211b11;
 
-  /* Borders & lines */
-  --border:    rgba(251, 191, 36, 0.08);
-  --border-2:  rgba(251, 191, 36, 0.16);
-  --border-neutral: rgba(255, 255, 255, 0.07);
+  /* Borders, hairlines & pitch markings */
+  --border:    rgba(251, 191, 36, 0.10);
+  --border-1:  rgba(251, 191, 36, 0.14);   /* alias used by some modules */
+  --border-2:  rgba(251, 191, 36, 0.20);
+  --border-neutral: rgba(246, 242, 233, 0.09);
+  --line:      rgba(251, 191, 36, 0.28);    /* visible gold hairline (pitch line) */
+  --line-faint: rgba(246, 242, 233, 0.12);
 
   /* Text */
   --text:       #f6f2e9;
   --text-muted: #b6ac99;
   --text-dim:   #847c6c;
+  --ink:        #120c02;   /* on-gold text */
 
   /* Glow / tints */
-  --gold-glow:  rgba(251, 191, 36, 0.14);
+  --gold-glow:  rgba(251, 191, 36, 0.16);
   --gold-tint:  rgba(251, 191, 36, 0.06);
 
   /* Typography */
   --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --font-body: 'Barlow', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Layout */
-  --maxw: 1180px;
-  --radius: 14px;
-  --radius-sm: 8px;
+  --maxw: 1240px;
+  --radius: 4px;
+  --radius-sm: 2px;
 
   /* Z-index scale */
   --z-nav: 50;
@@ -86,20 +92,20 @@ button { font-family: inherit; cursor: pointer; }
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+  line-height: 1.0;
+  letter-spacing: -0.015em;
 }
 
 ::selection {
   background: var(--gold);
-  color: #1a160f;
+  color: var(--ink);
 }
 
 /* Accessible focus ring everywhere */
 :focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 /* ---------- Accessibility helpers ---------- */
@@ -109,14 +115,12 @@ h1, h2, h3, h4 {
   top: 0;
   z-index: 100;
   background: var(--gold);
-  color: #1a1304;
+  color: var(--ink);
   padding: 0.7rem 1.2rem;
   font-weight: 600;
   border-radius: 0 0 var(--radius-sm) 0;
 }
-.sr-skip:focus {
-  left: 0;
-}
+.sr-skip:focus { left: 0; }
 
 /* ---------- Shared layout ---------- */
 .container {
@@ -127,7 +131,7 @@ h1, h2, h3, h4 {
 }
 
 .section {
-  padding-block: clamp(4rem, 9vw, 7.5rem);
+  padding-block: clamp(4.5rem, 10vw, 8rem);
 }
 
 /* Keep section headings clear of the fixed navbar on anchor jumps */
@@ -135,22 +139,34 @@ h1, h2, h3, h4 {
   scroll-margin-top: 80px;
 }
 
+/* ---------- Editorial signature: eyebrow / kicker ---------- */
 .eyebrow {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+/* Short gold tick that reads like a pitch marking */
+.eyebrow::before {
+  content: '';
+  width: 1.6rem;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
 }
 
 .section-title {
-  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
-  font-weight: 800;
+  font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
 }
 
 .gold-text { color: var(--gold); }
@@ -162,51 +178,63 @@ h1, h2, h3, h4 {
   max-width: 56ch;
 }
 
+/* Mono "data" label — scoreboard / fixtures grammar */
+.data {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.6rem;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
+  font-size: 1.06rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 0.95rem 1.9rem;
   border-radius: var(--radius-sm);
   border: 1.5px solid transparent;
   min-height: 48px;
-  transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.18s ease, background 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   will-change: transform;
 }
-
-.btn:active { transform: translateY(1px) scale(0.99); }
+.btn:active { transform: translateY(1px); }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 100%);
-  color: #1a1304;
-  box-shadow: 0 6px 22px -8px var(--gold-glow);
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 0 0 0 var(--gold-glow);
 }
 .btn-primary:hover {
+  background: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px -10px var(--gold-glow);
+  box-shadow: 0 14px 34px -12px var(--gold-glow);
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   border-color: var(--border-2);
   color: var(--text);
 }
 .btn-ghost:hover {
   border-color: var(--gold);
+  color: var(--gold);
   background: var(--gold-tint);
 }
 
 /* ---------- Reveal animation ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(26px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -214,10 +242,10 @@ h1, h2, h3, h4 {
   opacity: 1;
   transform: none;
 }
-.delay-1 { transition-delay: 0.08s; }
-.delay-2 { transition-delay: 0.16s; }
-.delay-3 { transition-delay: 0.24s; }
-.delay-4 { transition-delay: 0.32s; }
+.delay-1 { transition-delay: 0.07s; }
+.delay-2 { transition-delay: 0.14s; }
+.delay-3 { transition-delay: 0.21s; }
+.delay-4 { transition-delay: 0.28s; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; }
