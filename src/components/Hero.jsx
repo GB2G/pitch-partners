@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Icon from "./Icon";
-import { HERO } from "../data/content";
+import { HERO, PROGRAMS } from "../data/content";
 import styles from "./Hero.module.css";
 
 // Word-by-word blur-in reveal
@@ -142,9 +142,20 @@ export default function Hero() {
         <div className={`container ${styles.fixturesInner}`}>
           <span className={`data ${styles.fixturesLabel}`}>The Programs</span>
           <ul className={styles.fixturesList}>
-            {HERO.fixtures.map((f) => (
-              <li key={f} className={styles.fixture}>{f}</li>
-            ))}
+            {HERO.fixtures.map((f, i) => {
+              const program = PROGRAMS[i];
+              return (
+                <li key={f} className={styles.fixture}>
+                  {f}
+                  {program && (
+                    <span className={styles.popup} role="tooltip">
+                      <span className={styles.popupTitle}>{program.name}</span>
+                      <span className={styles.popupText}>{program.details}</span>
+                    </span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </motion.div>
