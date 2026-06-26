@@ -31,6 +31,7 @@ export default function BookingPage() {
               <h2>Why Choose Pitch Partners?</h2>
               <ul>
                 <li>Professional coaching from an internationally experienced player</li>
+                <li>Licensed coach</li>
                 <li>Personalized training tailored to your goals</li>
                 <li>Access to elite networks and recruitment opportunities</li>
                 <li>Proven pathway to professional football</li>
