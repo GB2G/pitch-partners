@@ -28,19 +28,24 @@
 }
 
 /* ── Signature: pitch markings ───────────────────────── */
+/* Both the circle and halfway line share one centre point (--pitch-x,
+   measured from the right edge) and one diameter (--pitch-d), so they stay
+   aligned as the bisected centre circle at every breakpoint. */
 .pitch {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  --pitch-x: clamp(8%, 24vw, 30%);
+  --pitch-d: min(48vh, 420px);
 }
-/* Right-hand halfway line */
+/* Halfway line through the circle's centre */
 .halfway {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: clamp(8%, 24vw, 30%);
+  right: var(--pitch-x);
   width: 1px;
   background: linear-gradient(to bottom, transparent, var(--line) 18%, var(--line) 82%, transparent);
 }
@@ -48,9 +53,9 @@
 .circle {
   position: absolute;
   top: 50%;
-  right: clamp(8%, 24vw, 30%);
-  width: min(48vh, 420px);
-  height: min(48vh, 420px);
+  right: var(--pitch-x);
+  width: var(--pitch-d);
+  height: var(--pitch-d);
   transform: translate(50%, -50%);
   border: 1px solid var(--line);
   border-radius: 50%;
@@ -58,7 +63,7 @@
 .spot {
   position: absolute;
   top: 50%;
-  right: clamp(8%, 24vw, 30%);
+  right: var(--pitch-x);
   width: 7px;
   height: 7px;
   transform: translate(50%, -50%);
@@ -249,12 +254,30 @@
   color: var(--text-muted);
 }
 
+/* Tablet: a smaller bisected centre circle, pulled in from the edge so the
+   whole motif reads clearly rather than bleeding off-screen. */
+@media (max-width: 1024px) {
+  .pitch {
+    --pitch-x: 14%;
+    --pitch-d: min(42vh, 340px);
+    opacity: 0.85;
+  }
+}
+
 @media (max-width: 760px) {
-  .circle, .halfway, .spot { right: -8%; opacity: 0.7; }
   .fixturesLabel { display: none; }
   /* The decorative fixtures strip would collide with the taller mobile
      content; the disciplines are listed in the Programs section instead. */
   .fixtures { display: none; }
+}
+
+/* Phone: a small, subtle motif tucked into the right margin. */
+@media (max-width: 640px) {
+  .pitch {
+    --pitch-x: 16%;
+    --pitch-d: min(34vh, 190px);
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 560px) {
