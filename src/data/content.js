@@ -14,6 +14,9 @@ export const GALLERY = {
     { src: `${import.meta.env.BASE_URL}gallery-1.jpg`, alt: 'Nick on the training pitch in Pitch Partners kit' },
     { src: `${import.meta.env.BASE_URL}gallery-3.jpg`, alt: 'Nick mentoring a university player at the sideline' },
     { src: `${import.meta.env.BASE_URL}gallery-4.jpg`, alt: 'Nick running a session with a full set of footballs' },
+    { src: `${import.meta.env.BASE_URL}gallery-5.jpg`, alt: 'A player in a white match kit working through agility-ring footwork as the coach looks on' },
+    { src: `${import.meta.env.BASE_URL}gallery-6.jpg`, alt: 'Coach leading a medicine-ball and slalom-pole speed drill with a player' },
+    { src: `${import.meta.env.BASE_URL}gallery-7.jpg`, alt: 'Coach and player working through a close-control dribbling drill between cones' },
   ],
 }
 
