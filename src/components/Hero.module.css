@@ -174,8 +174,24 @@
   flex-wrap: wrap;
   align-items: baseline;
 }
+.fixtureItem {
+  display: inline-flex;
+  align-items: baseline;
+}
+/* Middot separators between programs */
+.fixtureItem:not(:first-child)::before {
+  content: '·';
+  margin: 0 clamp(0.7rem, 2vw, 1.25rem);
+  color: var(--gold);
+  font-weight: 700;
+}
+/* Each program is a button that opens its details modal */
 .fixture {
   position: relative;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
   display: inline-flex;
   align-items: baseline;
   font-family: var(--font-display);
@@ -184,16 +200,13 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--text-muted);
-  cursor: default;
+  cursor: pointer;
   transition: color 0.25s ease;
 }
 .fixture:hover { color: var(--gold); }
-/* Middot separators instead of squad numbers */
-.fixture:not(:first-child)::before {
-  content: '·';
-  margin: 0 clamp(0.7rem, 2vw, 1.25rem);
-  color: var(--gold);
-  font-weight: 700;
+.fixture:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
 }
 
 /* ── Hover popup: same description as the Programs modal ── */
@@ -235,8 +248,8 @@
   transform: translateY(0);
 }
 /* Keep the right-hand popups inside the viewport */
-.fixture:last-child .popup { left: auto; right: 0; }
-.fixture:last-child .popup::after { left: auto; right: 1.5rem; }
+.fixtureItem:last-child .popup { left: auto; right: 0; }
+.fixtureItem:last-child .popup::after { left: auto; right: 1.5rem; }
 
 .popupTitle {
   font-family: var(--font-display);
@@ -265,10 +278,20 @@
 }
 
 @media (max-width: 760px) {
+  /* Stack the hero so the tappable programs strip flows below the content
+     instead of being pinned over it. */
+  .hero { flex-direction: column; justify-content: center; align-items: stretch; }
+  .content { width: 100%; }
+  .fixtures {
+    position: static;
+    margin-top: 2.5rem;
+    border-top: none;
+    background: none;
+    backdrop-filter: none;
+  }
   .fixturesLabel { display: none; }
-  /* The decorative fixtures strip would collide with the taller mobile
-     content; the disciplines are listed in the Programs section instead. */
-  .fixtures { display: none; }
+  /* Touch has no hover — tapping a program opens the modal instead. */
+  .popup { display: none; }
 }
 
 /* Phone: a small, subtle motif tucked into the right margin. */
