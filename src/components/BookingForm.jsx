@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CONTACT, PROGRAMS } from '../data/content'
+import { PROGRAMS } from '../data/content'
 import styles from './BookingForm.module.css'
 
 export default function BookingForm({ onClose }) {
@@ -55,42 +55,24 @@ export default function BookingForm({ onClose }) {
     try {
       const selectedProgram = PROGRAMS.find((p) => p.id === formData.program)
 
-      const emailBody = `
-New Booking Request from Pitch Partners Website
-
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Program: ${selectedProgram?.name}
-Message: ${formData.message || '(No message)'}
-
-Please follow up with the client.
-      `.trim()
-
-      const response = await fetch('https://api.resend.com/emails', {
+      // Send to our own serverless endpoint, which calls Resend server-side
+      // (Resend can't be called directly from the browser — no CORS, and the
+      // API key must stay secret).
+      const response = await fetch('/api/send-booking', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          from: 'Pitch Partners Bookings <bookings@pitchpartners.ca>',
-          to: CONTACT.email,
-          reply_to: formData.email,
-          subject: `New Booking Request - ${formData.name}`,
-          html: `
-            <h2>New Booking Request</h2>
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Phone:</strong> ${formData.phone}</p>
-            <p><strong>Program:</strong> ${selectedProgram?.name}</p>
-            <p><strong>Message:</strong> ${formData.message || '(No message)'}</p>
-          `,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          program: selectedProgram?.name || formData.program,
+          message: formData.message,
         }),
       })
 
       if (!response.ok) {
-        throw new Error(`Email service error: ${response.statusText}`)
+        const data = await response.json().catch(() => ({}))
+        throw new Error(data.error || `Request failed (${response.status})`)
       }
 
       setStatus('success')

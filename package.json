@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "cp dist/index.html dist/404.html && touch dist/.nojekyll",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -t true"
+    "preview": "vite preview"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
