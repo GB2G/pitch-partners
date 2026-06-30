@@ -74,8 +74,9 @@ Please follow up with the client.
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'noreply@resend.dev',
+          from: 'Pitch Partners Bookings <bookings@pitchpartners.ca>',
           to: CONTACT.email,
+          reply_to: formData.email,
           subject: `New Booking Request - ${formData.name}`,
           html: `
             <h2>New Booking Request</h2>
